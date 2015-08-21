@@ -7,6 +7,7 @@
  * Licensed under the MIT license.
  */
 
+
 'use strict';
 
 // # Globbing
@@ -16,9 +17,10 @@
 // '<%= config.src %>/templates/pages/**/*.hbs'
 
 module.exports = function(grunt) {
-
+  grunt.loadNpmTasks('grunt-contrib-handlebars');
   require('time-grunt')(grunt);
   require('load-grunt-tasks')(grunt);
+  require('./tasks/compile')(grunt);
 
   // Project configuration.
   grunt.initConfig({
@@ -66,7 +68,6 @@ module.exports = function(grunt) {
         }
       }
     },
-
     connect: {
       options: {
         port: 9000,

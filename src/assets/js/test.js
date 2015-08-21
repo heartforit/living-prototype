@@ -1,5 +1,5 @@
-define(['jquery'], function($){
-	
+define(['jquery', 'handlebarsRuntime'], function($, handlebarsRuntime){
+	console.log(handlebarsRuntime);
 	return {
 		sayHello: function(){
 			console.log("hello world 2");

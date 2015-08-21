@@ -31,5 +31,10 @@
     "site generator",
     "site builder",
     "grunt"
-  ]
+  ],
+  "dependencies": {
+    "extend-grunt-plugin": "^0.1.0",
+    "glob": "^5.0.14",
+    "grunt-contrib-handlebars": "^0.10.2"
+  }
 }
