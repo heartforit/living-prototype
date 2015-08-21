@@ -91,7 +91,7 @@ module.exports = function(grunt) {
           helpers: ['./partialHelper.js' ],
           flatten: true,
           assets: '<%= config.dist %>/assets',
-          layout: '<%= config.src %>/templates/layouts/default.hbs',
+          layout: '<%= config.dist %>/templates/layouts/default.hbs',
           data: '<%= config.src %>/data/*.{json,yml}',
           partials: '<%= config.src %>/templates/partials/*.hbs'
         },
@@ -100,7 +100,28 @@ module.exports = function(grunt) {
         }
       }
     },
-
+    compile: {
+      handlebars: {
+        src: "src/templates/pages/**/*.hbs",
+        dest: 'dist/templates'
+      }
+    },
+    includereplace: {
+            concat: {
+                options: {
+                    includesDir: './src/templates',
+                    prefix: '{{@',
+                    suffix: '}}',
+                    globals: {}
+                },
+                files: [{
+                    src: './**/*.hbs',
+                    dest: './dist/templates/',
+                    cwd: './src/templates',
+                    expand: true
+                }]
+            }
+        },
     copy: {
       bootstrap: {
         expand: true,
@@ -133,6 +154,8 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'clean',
     'copy',
+    'includereplace:concat',
+    'compile:handlebars',
     'assemble'
   ]);
 
