@@ -22,7 +22,11 @@ module.exports = function(grunt){
 
       extendGruntPlugin(grunt, require('../node_modules/grunt-contrib-handlebars/tasks/handlebars'), {
         'handlebars.compile': {
-            files: allFiles
+            files: allFiles,
+            options: {
+              namespace: false,
+              wrapped: true
+            }
         }, 
       });
 

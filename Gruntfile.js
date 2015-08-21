@@ -88,6 +88,7 @@ module.exports = function(grunt) {
     assemble: {
       pages: {
         options: {
+          helpers: ['./partialHelper.js' ],
           flatten: true,
           assets: '<%= config.dist %>/assets',
           layout: '<%= config.src %>/templates/layouts/default.hbs',
