@@ -1,5 +1,4 @@
 define(['jquery', 'handlebarsRuntime'], function($, handlebarsRuntime){
-	console.log(handlebarsRuntime);
 	window.Handlebars = handlebarsRuntime;
 
 	handlebarsRuntime.registerHelper('bold', function(options) {

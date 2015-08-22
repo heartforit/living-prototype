@@ -1,20 +1,4 @@
-/*
- * Generated on 2015-08-21
- * generator-assemble v0.5.0
- * https://github.com/assemble/generator-assemble
- *
- * Copyright (c) 2015 Hariadi Hinta
- * Licensed under the MIT license.
- */
-
-
 'use strict';
-
-// # Globbing
-// for performance reasons we're only matching one level down:
-// '<%= config.src %>/templates/pages/{,*/}*.hbs'
-// use this if you want to match all subfolders:
-// '<%= config.src %>/templates/pages/**/*.hbs'
 
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-handlebars');
@@ -24,7 +8,6 @@ module.exports = function(grunt) {
 
   // Project configuration.
   grunt.initConfig({
-
     config: {
       src: 'src',
       dist: 'dist'
@@ -33,7 +16,7 @@ module.exports = function(grunt) {
     watch: {
       assemble: {
         files: ['<%= config.src %>/{content,data,templates}/{,*/}*.{hbs}'],
-        tasks: ['assemble']
+        tasks: ['build']
       },
       livereload: {
         options: {
@@ -42,15 +25,20 @@ module.exports = function(grunt) {
         files: [
           '<%= config.dist %>/{,*/}*.html',
           '<%= config.dist %>/assets/{,*/}*.css',
-          '<%= config.dist %>/assets/{,*/}*.js',
           '<%= config.dist %>/assets/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       },
       requirejs: {
         files: [
-          '<%= config.src %>/assets/js/*.js',
+          '<%= config.src %>/assets/**/*.js',
         ],
         tasks: ['requirejs']
+      },
+      compile: {
+        files: [
+          '<%= config.dist %>/templats/**/**.hbs',
+        ],
+        tasks: ['build']
       }
     },
 
@@ -61,6 +49,8 @@ module.exports = function(grunt) {
           preserveLicenseComments: false,
           generateSourceMaps: true,
           optimize: "uglify2",
+          // only for debugging and debelopment mode purposes here
+          //useSourceUrl: true,
           mainConfigFile: "src/assets/js/require-main.js",
           name: "bower_components/almond/almond.js", // assumes a production build using almond
           out: "<%= config.dist %>/assets/js/bundle.js",
@@ -73,7 +63,7 @@ module.exports = function(grunt) {
         port: 9000,
         livereload: 35729,
         // change this to '0.0.0.0' to access the server from outside
-        hostname: 'localhost'
+        hostname: '0.0.0.0'
       },
       livereload: {
         options: {
@@ -91,19 +81,18 @@ module.exports = function(grunt) {
           helpers: ['./partialHelper.js' ],
           flatten: true,
           assets: '<%= config.dist %>/assets',
-          layout: '<%= config.dist %>/templates/layouts/default.hbs',
           data: '<%= config.src %>/data/*.{json,yml}',
-          partials: '<%= config.src %>/templates/partials/*.hbs'
+          partials: '<%= config.dist %>/templates/partials/*.hbs'
         },
         files: {
-          '<%= config.dist %>/': ['<%= config.src %>/templates/pages/*.hbs']
+          '<%= config.dist %>/': ['<%= config.dist %>/templates/pages/*.hbs']
         }
       }
     },
     compile: {
       handlebars: {
-        src: "src/templates/pages/**/*.hbs",
-        dest: 'dist/templates'
+        src: 'dist/templates/pages/**/*.hbs',
+        dest: 'dist/templates/compiled'
       }
     },
     includereplace: {
@@ -156,6 +145,7 @@ module.exports = function(grunt) {
     'copy',
     'includereplace:concat',
     'compile:handlebars',
+    'requirejs',
     'assemble'
   ]);
 
