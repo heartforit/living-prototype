@@ -3,12 +3,15 @@ require([
 	'src/assets/js/molecules/Amounthandler'
 	], function(test, Amounthandler){
 	
-	//new Amounthandler().emit('setValue', {value: 0});
-	//new Amounthandler().emit('setValue', {value: "0"});
-	
 	$(document).ready(function(){
 		var amounthandlers = $('[data-bind="amounthandler"]');
-		Amounthandler.bind(amounthandlers)
+		amounthandlers.each(function(){
+			var boundAmounthandler = Amounthandler.bind($(this));
+			boundAmounthandler.on('quantityChanged', function(newQuantity){
+				console.log("quantityChanged event triggerd succesfully");
+				console.log("new quantity is:", newQuantity);
+			})
+		})
 	});
 
 	/*test.loadTemplate('blog', function(template){

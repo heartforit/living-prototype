@@ -2,14 +2,9 @@
 	
 	{{> navbar-fixed-top }}
 
-    <div class="container theme-showcase" role="main">
-      <h1>Posts</h1>
-		{{#each blog.posts}}
-		   {{> "myPartial" }}
-		{{/each}}
-		
+    <div class="container theme-showcase" role="main">	
 		{{@include("molecules/amounthandler.hbs")}}
-
+		{{@include("molecules/amounthandler.hbs")}}
     </div>
 
 {{@include("organisms/page-foot.hbs")}}
