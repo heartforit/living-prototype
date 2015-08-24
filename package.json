@@ -22,7 +22,14 @@
     "grunt-contrib-requirejs": "^0.4.4",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-include-replace": "^3.1.0",
+    "karma": "^0.13.9",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-coverage": "^0.5.0",
+    "karma-fixture": "^0.2.5",
+    "karma-jasmine": "^0.2.2",
+    "karma-phantomjs-launcher": "^0.2.1",
     "load-grunt-tasks": "^0.6.0",
+    "phantomjs": "^1.9.18",
     "time-grunt": "^1.0.0"
   },
   "keywords": [
@@ -36,6 +43,7 @@
   "dependencies": {
     "extend-grunt-plugin": "^0.1.0",
     "glob": "^5.0.14",
-    "grunt-contrib-handlebars": "^0.10.2"
+    "grunt-contrib-handlebars": "^0.10.2",
+    "karma": "^0.13.9"
   }
 }

@@ -1,5 +1,5 @@
 require([
-	'src/assets/js/test', 
+	'src/assets/js/molecules/test', 
 	'src/assets/js/molecules/Amounthandler'
 	], function(test, Amounthandler){
 	

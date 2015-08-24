@@ -85,7 +85,8 @@ module.exports = function(grunt) {
           partials: '<%= config.dist %>/templates/partials/*.hbs'
         },
         files: {
-          '<%= config.dist %>/': ['<%= config.dist %>/templates/pages/*.hbs']
+          '<%= config.dist %>/assembled/pages/': ['<%= config.dist %>/templates/pages/*.hbs'],
+          '<%= config.dist %>/assembled/molecules/': ['<%= config.dist %>/templates/molecules/*.hbs'],
         }
       }
     },
